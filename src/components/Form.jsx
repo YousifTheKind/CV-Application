@@ -1,13 +1,14 @@
 import "../styles/Form.css";
 
-export default function Form() {
+export default function Form({ handleSubmit, handleEdit }) {
     return (
         <>
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
+                <h1>Application</h1>
                 <fieldset>
                     <legend>General Information:</legend>
                     <div>
-                        <Input label="Name:" type="text" id="name" />
+                        <Input label="Name:" id="name" value="Flan Alflany" />
                     </div>
                     <div>
                         <Input
@@ -15,10 +16,16 @@ export default function Form() {
                             type="tel"
                             id="phone"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            value="123-456-7890"
                         />
                     </div>
                     <div>
-                        <Input label="Email:" type="email" id="email" />
+                        <Input
+                            label="Email:"
+                            type="email"
+                            id="email"
+                            value="flan@flany.com"
+                        />
                     </div>
                 </fieldset>
                 <fieldset>
@@ -26,18 +33,22 @@ export default function Form() {
                     <div>
                         <Input
                             label="School Name:"
-                            type="text"
                             id="school-name"
+                            value="UOP"
                         />
                     </div>
                     <div>
-                        <Input label="Field of study:" type="text" id="field" />
+                        <Input
+                            label="Field of study:"
+                            id="field"
+                            value="Computer Science"
+                        />
                     </div>
                     <div>
                         <Input
-                            label="Date of study:"
+                            label="Study Date:"
                             type="date"
-                            id="date-of-study"
+                            id="study-date"
                         />
                     </div>
                 </fieldset>
@@ -46,16 +57,26 @@ export default function Form() {
                     <div>
                         <Input
                             label="Company Name:"
-                            type="text"
                             id="company-name"
+                            value="KFC"
                         />
                     </div>
                     <div>
                         <Input
                             label="Position Title:"
-                            type="text"
                             id="position-title"
+                            value="a big deal"
                         />
+                    </div>
+                    <div>
+                        <Input
+                            label="Start Date:"
+                            type="date"
+                            id="start-date"
+                        />
+                    </div>
+                    <div>
+                        <Input label="End Date:" type="date" id="end-date" />
                     </div>
                     <div>
                         <label htmlFor="main-responsibilities">
@@ -65,20 +86,30 @@ export default function Form() {
                                 rows="5"
                                 cols="33"
                                 id="main-responsibilities"
+                                value="blah blah blah"
                             ></textarea>
                         </label>
                     </div>
                 </fieldset>
+                <button type="submit">Submit</button>
+                <button onClick={handleEdit}>Edit</button>
             </form>
         </>
     );
 }
 
-function Input({ label, type, id, pattern }) {
+function Input({ label, type = "text", id, pattern, value }) {
     return (
-        <label htmlFor={id}>
-            {label}
-            <input type={type} name={id} id={id} pattern={pattern} required />
-        </label>
+        <div className="input-grid">
+            <label htmlFor={id}>{label}</label>
+            <input
+                type={type}
+                name={id}
+                id={id}
+                pattern={pattern}
+                value={value}
+                required
+            />
+        </div>
     );
 }

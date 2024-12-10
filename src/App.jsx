@@ -1,14 +1,33 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Form from "./components/Form";
+import CV from "./components/CV";
 function App() {
-    const [count, setCount] = useState(0);
+    const [cvData, setCVData] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    function handleSubmit(e) {
+        e.preventDefault();
+        const newCVData = {};
+        for (const element of e.target.elements) {
+            if (element.name) {
+                newCVData[element.name] = element.value;
+            }
+        }
+        setCVData({ ...newCVData });
+        setIsSubmitted(true);
+    }
+    function handleEdit(e) {
+        e.preventDefault();
+        setIsSubmitted(false);
+    }
+    document
+        .querySelectorAll("fieldset")
+        .forEach((field) => (field.disabled = isSubmitted));
 
     return (
         <>
-            <Form></Form>
+            <Form handleEdit={handleEdit} handleSubmit={handleSubmit} />
+            <CV cvData={cvData} />
         </>
     );
 }

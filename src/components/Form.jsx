@@ -8,7 +8,7 @@ export default function Form({ handleSubmit, handleEdit }) {
                 <fieldset>
                     <legend>General Information:</legend>
                     <div>
-                        <Input label="Name:" id="name" value="Flan Alflany" />
+                        <Input label="Name:" id="name" />
                     </div>
                     <div>
                         <Input
@@ -16,7 +16,7 @@ export default function Form({ handleSubmit, handleEdit }) {
                             type="tel"
                             id="phone"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            value="123-456-7890"
+                            // value="123-456-7890"
                         />
                     </div>
                     <div>
@@ -24,7 +24,7 @@ export default function Form({ handleSubmit, handleEdit }) {
                             label="Email:"
                             type="email"
                             id="email"
-                            value="flan@flany.com"
+                            // value="flan@flany.com"
                         />
                     </div>
                 </fieldset>
@@ -34,14 +34,14 @@ export default function Form({ handleSubmit, handleEdit }) {
                         <Input
                             label="School Name:"
                             id="school-name"
-                            value="UOP"
+                            // value="UOP"
                         />
                     </div>
                     <div>
                         <Input
                             label="Field of study:"
                             id="field"
-                            value="Computer Science"
+                            // value="Computer Science"
                         />
                     </div>
                     <div>
@@ -58,14 +58,14 @@ export default function Form({ handleSubmit, handleEdit }) {
                         <Input
                             label="Company Name:"
                             id="company-name"
-                            value="KFC"
+                            // value="KFC"
                         />
                     </div>
                     <div>
                         <Input
                             label="Position Title:"
                             id="position-title"
-                            value="a big deal"
+                            // value="a big deal"
                         />
                     </div>
                     <div>
@@ -86,7 +86,6 @@ export default function Form({ handleSubmit, handleEdit }) {
                                 rows="5"
                                 cols="33"
                                 id="main-responsibilities"
-                                value="blah blah blah"
                             ></textarea>
                         </label>
                     </div>

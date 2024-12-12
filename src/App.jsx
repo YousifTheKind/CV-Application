@@ -15,9 +15,15 @@ function App() {
         }
         setCVData({ ...newCVData });
         setIsSubmitted(true);
+        e.target.reset();
     }
     function handleEdit(e) {
         e.preventDefault();
+        for (const element of e.target.parentNode.elements) {
+            if (cvData[element.name]) {
+                element.value = cvData[element.name];
+            }
+        }
         setIsSubmitted(false);
     }
     document
@@ -27,7 +33,7 @@ function App() {
     return (
         <>
             <Form handleEdit={handleEdit} handleSubmit={handleSubmit} />
-            <CV cvData={cvData} />
+            <CV cvData={cvData} display={isSubmitted} />
         </>
     );
 }

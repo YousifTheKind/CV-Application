@@ -3,13 +3,13 @@ export default function CV({ cvData, display }) {
     if (!display) {
         return (
             <div className="cv">
-                <h1>CV</h1>
+                <h3>Submit the form to generate the CV</h3>
             </div>
         );
     }
     return (
         <div className="cv">
-            <h1>CV</h1>
+            {/* <h1>CV</h1> */}
             <h2>{cvData.name}</h2>
             <div>
                 <span>{cvData.phone}</span>
@@ -21,7 +21,7 @@ export default function CV({ cvData, display }) {
                     <h4>{cvData["school-name"]}</h4>
                     <div>
                         <p>{cvData.field}</p>
-                        <p>{cvData["study-date"]}</p>
+                        <p>{cvData["graduation-date"]}</p>
                     </div>
                 </div>
                 <h3>Work Experience:</h3>

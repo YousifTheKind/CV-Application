@@ -4,7 +4,8 @@ form {
 h1 {
     margin: 0;
 }
-.input-grid,
-#main-responsibilities {
-    display: grid;
+
+.edu,
+.work {
+    margin-top: 24px;
 }

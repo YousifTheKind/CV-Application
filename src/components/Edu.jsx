@@ -1,7 +1,7 @@
 import Input from "./Input";
-export default function Edu({ entryNumber }) {
+export default function Edu() {
     return (
-        <div className="edu" entry-number={entryNumber}>
+        <div className="edu">
             <div>
                 <Input label="School Name:" id="school-name" />
             </div>

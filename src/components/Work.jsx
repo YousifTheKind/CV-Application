@@ -1,16 +1,20 @@
 import Input from "./Input";
-export default function Work() {
+export default function Work({ id }) {
     function compare() {
+        console.log(`#start-date-${id}`);
+
+        console.log(document.querySelector(`#start-date-${id}`));
+
         const startValue = new Date(
-            document.getElementById("start-date").value
+            document.querySelector(`#start-date-${id}`).value
         ).getTime();
         const endValue = new Date(
-            document.getElementById("end-date").value
+            document.querySelector(`#end-date-${id}`).value
         ).getTime();
 
-        const endDateElement = document.getElementById("end-date");
+        const endDateElement = document.querySelector(`#end-date-${id}`);
 
-        if (startValue > endValue) {
+        if (startValue >= endValue) {
             endDateElement.setCustomValidity(
                 "End date must be after start date"
             );
@@ -26,13 +30,17 @@ export default function Work() {
                 <Input label="Position Title:" id="position-title" />
             </div>
             <div>
-                <Input label="Start Date:" type="month" id="start-date" />
+                <Input
+                    label="Start Date:"
+                    type="month"
+                    id={`start-date-${id}`}
+                />
             </div>
             <div>
                 <Input
                     label="End Date:"
                     type="month"
-                    id="end-date"
+                    id={`end-date-${id}`}
                     onChange={compare}
                 />
             </div>

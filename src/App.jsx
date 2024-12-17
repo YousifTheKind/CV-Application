@@ -7,10 +7,6 @@ import Work from "./components/Work";
 function App() {
     const [cvData, setCVData] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-    // const [childCount, setChildCount] = useState({
-    //     eduChildCount: 1,
-    //     workChildCount: 1,
-    // });
     const [eduChildren, setEduChildren] = useState([<Edu key={0} />]);
     const [workChildren, setWorkChildren] = useState([<Work key={0} id={0} />]);
 
@@ -23,30 +19,35 @@ function App() {
         };
         const eduEntries = document.querySelectorAll(".edu");
         const workEntries = document.querySelectorAll(".work");
-        eduEntries.forEach((entry) => {
+        const genInfoEntry = document.querySelector(".genInfoFieldset");
+        function createEntryObject(entry) {
             const entryObject = {};
             const inputs = entry.querySelectorAll("input");
+
             inputs.forEach((input) => (entryObject[input.name] = input.value));
-            newCVData.edu.push(entryObject);
+            if (entry.className === "work") {
+                const mainResponsibilitiesELement = entry.querySelector(
+                    "#main-responsibilities"
+                );
+                console.log(mainResponsibilitiesELement.value);
+
+                entryObject[mainResponsibilitiesELement.id] =
+                    mainResponsibilitiesELement.value.split("\n");
+            }
+            return entryObject;
+        }
+        eduEntries.forEach((entry) => {
+            newCVData.edu.push(createEntryObject(entry));
         });
         workEntries.forEach((entry) => {
-            const entryObject = {};
-            const inputs = entry.querySelectorAll("input");
-            inputs.forEach((input) => (entryObject[input.name] = input.value));
-            newCVData.work.push(entryObject);
+            newCVData.work.push(createEntryObject(entry));
         });
-        for (const element of e.target.elements) {
-            if (element.className === "genInfoFieldset") {
-                for (const field of element.elements) {
-                    if (field.name) {
-                        newCVData.genInfo[field.name] = field.value;
-                    }
-                }
-            }
-        }
+        genInfoEntry
+            .querySelectorAll("input")
+            .forEach((input) => (newCVData.genInfo[input.name] = input.value));
         setCVData({ ...newCVData });
         setIsSubmitted(true);
-        e.target.reset();
+        // e.target.reset();
     }
     console.log(cvData);
 
@@ -77,23 +78,6 @@ function App() {
         }
     }
 
-    // for (let i = 0; i < childCount.eduChildCount; i++) {
-    //     if (childCount.eduChildCount < 10) {
-    //         setEduChildren((eduChildren) => [
-    //             ...eduChildren,
-    //             <Edu
-    //                 key={crypto.randomUUID()}
-    //                 entryNumber={childCount.eduChildCount}
-    //             />,
-    //         ]);
-    //         eduChildren.push(<Edu entryNumber={childCount.eduChildCount} />);
-    //     }
-    // }
-    // for (let i = 0; i < childCount.workChildCount; i++) {
-    //     if (childCount.workChildCount < 10) {
-    //         workChildren.push(<Work />);
-    //     }
-    // }
     document
         .querySelectorAll("fieldset")
         .forEach((field) => (field.disabled = isSubmitted));

@@ -1,4 +1,26 @@
 .cv {
-    min-width: 300px;
+    min-width: 500px;
+    padding: 0 24px;
     border: white 1px solid;
+    background-color: wheat;
+    color: black;
+}
+.cv > h2,
+h3 {
+    margin: 0;
+}
+h4 {
+    margin-bottom: 0;
+}
+.indent {
+    margin-left: 24px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #000000;
+    margin: 1em 0;
+    padding: 0;
 }

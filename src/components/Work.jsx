@@ -1,10 +1,6 @@
 import Input from "./Input";
 export default function Work({ id }) {
     function compare() {
-        console.log(`#start-date-${id}`);
-
-        console.log(document.querySelector(`#start-date-${id}`));
-
         const startValue = new Date(
             document.querySelector(`#start-date-${id}`).value
         ).getTime();
@@ -52,6 +48,7 @@ export default function Work({ id }) {
                         rows="5"
                         cols="33"
                         id="main-responsibilities"
+                        style={{ whiteSpace: "pre-wrap" }}
                     ></textarea>
                 </label>
             </div>

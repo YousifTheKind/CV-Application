@@ -1,11 +1,31 @@
 import "../styles/CV.css";
 export default function CV({ cvData, display }) {
-    console.log(cvData.edu);
-
     if (!display) {
         return (
             <div className="cv">
                 <h3>Submit the form to generate the CV</h3>
+                <h2>Name</h2>
+                <div style={{ textAlign: "left" }}>
+                    <h3>Education</h3>
+                    <hr />
+                    <h4>School Name</h4>
+                    <div className="indent">
+                        <i>
+                            <p>Field of study</p>
+                            <p>Graduation date</p>
+                        </i>
+                    </div>
+                    <h3>Work Experience</h3>
+                    <hr />
+                    <h4>Company Name</h4>
+                    <div className="indent">
+                        <i>
+                            <p>Position Title</p>
+                            <p>Start & End Date</p>
+                        </i>
+                        <p>Main Responsibilities</p>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -34,7 +54,7 @@ export default function CV({ cvData, display }) {
                         );
                     })}
                 </div>
-                <h3>Work Experience:</h3>
+                <h3>Work Experience</h3>
                 <hr />
 
                 <div>
@@ -43,7 +63,7 @@ export default function CV({ cvData, display }) {
                             <>
                                 {" "}
                                 <h4>{entry["company-name"]}</h4>
-                                <div>
+                                <div className="indent">
                                     <i>
                                         <p>{entry["position-title"]} </p>
                                         <span>
@@ -75,19 +95,19 @@ export default function CV({ cvData, display }) {
                                             }
                                         </span>
                                     </i>
+                                    <p>
+                                        {entry["main-responsibilities"].map(
+                                            (item) => {
+                                                return (
+                                                    <>
+                                                        {item}
+                                                        <br />
+                                                    </>
+                                                );
+                                            }
+                                        )}
+                                    </p>
                                 </div>
-                                <p>
-                                    {entry["main-responsibilities"].map(
-                                        (item) => {
-                                            return (
-                                                <>
-                                                    {item}
-                                                    <br />
-                                                </>
-                                            );
-                                        }
-                                    )}
-                                </p>
                             </>
                         );
                     })}

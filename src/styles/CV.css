@@ -1,9 +1,9 @@
 .cv {
     min-width: 500px;
     padding: 0 24px;
-    border: white 1px solid;
     background-color: wheat;
     color: black;
+    max-height: fit-content;
 }
 .cv > h2,
 h3 {

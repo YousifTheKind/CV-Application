@@ -29,8 +29,6 @@ function App() {
                 const mainResponsibilitiesELement = entry.querySelector(
                     "#main-responsibilities"
                 );
-                console.log(mainResponsibilitiesELement.value);
-
                 entryObject[mainResponsibilitiesELement.id] =
                     mainResponsibilitiesELement.value.split("\n");
             }
@@ -47,17 +45,36 @@ function App() {
             .forEach((input) => (newCVData.genInfo[input.name] = input.value));
         setCVData({ ...newCVData });
         setIsSubmitted(true);
-        // e.target.reset();
+        e.target.reset();
     }
-    console.log(cvData);
 
     function handleEdit(e) {
         e.preventDefault();
-        for (const element of e.target.parentNode.elements) {
-            if (cvData[element.name]) {
-                element.value = cvData[element.name];
-            }
-        }
+        const genInfoEntry = document.querySelectorAll(
+            ".genInfoFieldset input"
+        );
+        const eduEntries = document.querySelectorAll(".edu");
+        const workEntries = document.querySelectorAll(".work");
+
+        genInfoEntry.forEach(
+            (input) => (input.value = cvData.genInfo[input.name])
+        );
+        eduEntries.forEach((entry, index) => {
+            const inputs = entry.querySelectorAll("input");
+            inputs.forEach(
+                (input) => (input.value = cvData.edu[index][input.name])
+            );
+        });
+
+        workEntries.forEach((entry, index) => {
+            const inputs = entry.querySelectorAll("input");
+            const textarea = entry.querySelector("textarea");
+            textarea.value = cvData.work[index]["main-responsibilities"];
+            inputs.forEach(
+                (input) => (input.value = cvData.work[index][input.name])
+            );
+        });
+
         setIsSubmitted(false);
     }
 
